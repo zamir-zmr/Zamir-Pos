@@ -94,17 +94,28 @@
         .cat-badge { font-size: 9px; color: var(--w); text-transform: uppercase; display: block; font-weight: 800; letter-spacing: .5px; margin-bottom: 4px; }
 
         /* ===== Cart bar / panel ===== */
-        .cart-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(120deg, var(--primary-dark), var(--primary));
-            color: #fff;
-          margin-right: 460px;
-          padding: 18px 26px;
-          margin-right: 460px;
-          display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; border-radius: 22px 22px 0 0; z-index: 1100;
-            box-shadow: 0 -12px 30px rgba(13,148,136,.28); box-sizing: border-box; font-weight: 700;
-        }
+        
+.cart-bar {
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: calc(100% - 460px);
+    background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    padding: 18px 26px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    cursor: pointer; 
+    border-radius: 22px 22px 0 0; 
+    z-index: 1100;
+    box-shadow: 0 -12px 30px rgba(13,148,136,.28); 
+    box-sizing: border-box; 
+    font-weight: 700;
+}
+
+      
+        
         #cart-panel {
             position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; z-index: 1200; height: 90%;
             transform: translateY(100%); transition: .32s cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,9 +248,7 @@
 .pg { grid-template-columns: repeat(4, 1fr); gap: 16px; margin-right: 460px; }
 
           
-          .cart-bar { border-radius: 22px 22px 0 0; padding: 20px 40px; 
-              margin-right: 460px;      
-                    }
+          .cart-bar { border-radius: 22px 22px 0 0; padding: 20px 40px; }
             #cart-panel { width: 460px; right: 0; left: auto; border-radius: 28px 0 0 0; height: 100%; box-shadow: -20px 0 50px rgba(15,23,42,.18); }
             .dash-container { padding: 32px; }
             .ticket-grid { grid-template-columns: repeat(8, 1fr); }
