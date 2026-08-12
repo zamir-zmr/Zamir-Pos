@@ -97,7 +97,9 @@
         .cart-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: linear-gradient(120deg, var(--primary-dark), var(--primary));
-            color: #fff; padding: 18px 26px; display: flex; justify-content: space-between; align-items: center;
+            color: #fff;
+          margin-right: 460px;
+          padding: 18px 26px; display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; border-radius: 22px 22px 0 0; z-index: 1100;
             box-shadow: 0 -12px 30px rgba(13,148,136,.28); box-sizing: border-box; font-weight: 700;
         }
@@ -281,10 +283,11 @@
 
     <div class="mw"><div id="m" class="pg"></div></div>
 
-<div class="cart-bar" id="bottom-cart-bar" onclick="toggleCart(true)" style="margin-right: 460px;">
-    <span id="cart-count">0 ITEMS</span>
-    <span id="cart-total">OMR 0.000</span>
-</div>
+
+  <div class="cart-bar" id="bottom-cart-bar" onclick="toggleCart(true)">
+        <span id="cart-count">0 ITEMS</span>
+        <span id="cart-total">OMR 0.000</span>
+    </div>
 
       
 <div id="cart-panel" style="font-family: 'Inter', sans-serif; display: grid; grid-template-rows: auto auto 1fr auto; height: 100dvh; background: #ffffff;">
