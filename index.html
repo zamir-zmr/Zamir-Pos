@@ -97,24 +97,39 @@
         
 
 
-      .cart-bar {
+      /* Defualt Mobile Styling (स्क्रीन छोटी होने पर पूरी चौड़ाई लेगा) */
+.cart-bar {
     position: fixed; 
-    bottom: 20px; 
-    left: 20px;
-    width: calc(100% - 500px);
+    bottom: 12px; 
+    left: 16px;
+    right: 16px;
+    width: auto; /* मोबाइल पर दोनों तरफ 16px का मार्जिन रहेगा */
     background: linear-gradient(120deg, var(--primary-dark), var(--primary));
     color: #fff;
-    padding: 18px 26px;
+    padding: 16px 20px;
     display: flex; 
     justify-content: space-between; 
     align-items: center;
     cursor: pointer; 
-    border-radius: 22px; 
+    border-radius: 18px; 
     z-index: 1100;
     box-shadow: 0 8px 24px rgba(13,148,136,.28); 
     box-sizing: border-box; 
     font-weight: 700;
 }
+
+/* PC / Large Screens (स्क्रीन बड़ी होने पर सिर्फ लेफ्ट साइड 500px जगह छोड़कर रहेगा) */
+@media (min-width: 992px) {
+    .cart-bar {
+        left: 20px;
+        right: auto;
+        width: calc(100% - 500px);
+        bottom: 20px;
+        padding: 18px 26px;
+        border-radius: 22px;
+    }
+}
+
 
 
       
