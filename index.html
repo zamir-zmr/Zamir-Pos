@@ -101,36 +101,25 @@
 
 
 /* Mobile View - नीचे पिल (Pill) शेप में दोनों तरफ 16px गैप के साथ */
-.cart-bar {
+
+      .cart-bar {
     position: fixed; 
-    bottom: 12px; 
+    bottom: 16px; 
     left: 16px;
-    right: 16px;
-    width: auto;
+    width: calc(100% - 32px);
+    max-width: 420px;
     background: linear-gradient(120deg, var(--primary-dark), var(--primary));
     color: #fff;
-    padding: 16px 20px;
+    padding: 16px 24px;
     display: flex; 
     justify-content: space-between; 
     align-items: center;
     cursor: pointer; 
-    border-radius: 18px; 
+    border-radius: 20px; 
     z-index: 1100;
     box-shadow: 0 8px 24px rgba(13,148,136,.28); 
     box-sizing: border-box; 
     font-weight: 700;
-}
-
-/* PC / Large Screens - बाईं तरफ सेट रहेगा और दाईं ओर 500px जगह छोड़ेगा */
-@media (min-width: 992px) {
-    .cart-bar {
-        left: 20px;
-        right: auto;
-        width: calc(100% - 5000px);
-        bottom: 20px;
-        padding: 18px 26px;
-        border-radius: 22px;
-    }
 }
 
 
