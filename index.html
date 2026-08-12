@@ -3657,7 +3657,7 @@ input[type="checkbox"] { accent-color: #0d9488; }
   .full-page .report-content, .full-page > div[style*="overflow-y:auto"] { scrollbar-width: thin; }
   
 
-  /* PC / Desktop Container */
+  /* PC / Desktop (Screen >= 768px): Top-Right me fixed rahega */
 #receiptPrintM {
     position: fixed !important;
     top: 4vh !important;
@@ -3668,30 +3668,25 @@ input[type="checkbox"] { accent-color: #0d9488; }
     height: 92vh !important;
     transform: none !important;
 
-    /* Horizontal scroll ko strict block karne ke liye */
+    /* Horizontal scroll completely block karne ke liye */
     overflow-x: hidden !important;
     overflow-y: auto !important;
     box-sizing: border-box !important;
-    
-    /* Layout alignment */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
 }
 
-/* PDF/Iframe sizing without scale issue */
+/* Receipt Iframe Fix: Left/Right scroll completely band karega */
 #receiptFrame { 
-    width: 100% !important; 
-    max-width: 100% !important;
-    height: 100% !important; 
-    transform: none !important; /* Scale hatane se outer scroll triggers khatam hote hain */
+    width: 133% !important; 
+    height: 133% !important; 
+    transform: scale(0.75) !important;
+    transform-origin: top left !important; /* Left scroll hone se rokta hai */
     overflow-x: hidden !important;
+    overflow-y: auto !important;
     border: none !important;
     display: block !important;
 }
 
-/* Mobile Screens */
+/* Mobile Screens (Screen < 768px) */
 @media (max-width: 767px) {
     #receiptPrintM {
         top: 2vh !important;
@@ -3703,7 +3698,6 @@ input[type="checkbox"] { accent-color: #0d9488; }
         transform: translateX(-50%) !important;
         overflow-x: hidden !important;
     }
-
 
 
 
