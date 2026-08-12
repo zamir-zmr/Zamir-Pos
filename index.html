@@ -3657,8 +3657,6 @@ input[type="checkbox"] { accent-color: #0d9488; }
   .full-page .report-content, .full-page > div[style*="overflow-y:auto"] { scrollbar-width: thin; }
   
 
-  
-
   /* PC / Desktop (Screen >= 768px): दाईं तरफ चिपका रहेगा */
 #receiptPrintM {
     position: fixed !important;
@@ -3669,17 +3667,17 @@ input[type="checkbox"] { accent-color: #0d9488; }
     max-width: 360px !important;
     height: 92vh !important;
     transform: none !important;
-    
-    /* Horizontal scroll rokne aur content ko top par bhejne ke liye */
+
+    /* Horizontal scroll khatam karne aur content ko top par align karne ke liye */
     overflow-x: hidden !important;
     overflow-y: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
     justify-content: flex-start !important;
+    align-items: center !important;
 }
 
-/* Receipt container ke andar ke sare elements ki width auto fit rahegi */
+/* Inner elements ko container ki width ke andar rakhne ke liye */
 #receiptPrintM * {
     max-width: 100% !important;
     box-sizing: border-box !important;
