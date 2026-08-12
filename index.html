@@ -3667,23 +3667,9 @@ input[type="checkbox"] { accent-color: #0d9488; }
     max-width: 360px !important;
     height: 92vh !important;
     transform: none !important;
-
-    /* Horizontal scroll khatam karne aur content ko top par align karne ke liye */
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
 }
 
-/* Inner elements ko container ki width ke andar rakhne ke liye */
-#receiptPrintM * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-/* Mobile Screens (Screen < 768px): बीच में रहेगा */
+/* Mobile Screens (Screen < 768px): बीच में रहेगा और सही दिखेगा */
 @media (max-width: 767px) {
     #receiptPrintM {
         top: 2vh !important;
@@ -3695,7 +3681,6 @@ input[type="checkbox"] { accent-color: #0d9488; }
         transform: translateX(-50%) !important;
     }
 }
-
 
   
 #receiptFrame { width: 133% !important; height: 133% !important; transform: scale(0.75) !important; }
