@@ -3147,16 +3147,33 @@ function refreshPwManagerUI(){
   }
 }
 
+
+  let _pwMgrPageOpen = false;
+
 function openPwManageModal(){
   closeM();
   refreshPwManagerUI();
   document.getElementById('pwMgrOv').style.display = 'block';
   document.getElementById('pwMgrBox').style.display = 'block';
+  _pwMgrPageOpen = true;
+  history.pushState({ subPage: 'pwMgr' }, '', '#pwMgr');
 }
 function closePwManager(){
   document.getElementById('pwMgrOv').style.display = 'none';
   document.getElementById('pwMgrBox').style.display = 'none';
+  if (_pwMgrPageOpen) {
+    _pwMgrPageOpen = false;
+    if (history.state && history.state.subPage === 'pwMgr') history.back();
+  }
 }
+
+window.addEventListener('popstate', function (e) {
+    if (_pwMgrPageOpen) {
+        _pwMgrPageOpen = false;
+        document.getElementById('pwMgrOv').style.display = 'none';
+        document.getElementById('pwMgrBox').style.display = 'none';
+    }
+});
 
 function openPwStep(mode, title, sub, btnLabel, icon){
   _pwStepMode = mode;
