@@ -522,7 +522,9 @@
    
    
     <div id="dashPage" class="full-page">
-    <div class="dash-header"><b style="font-size: 22px;">DASHBOARD</b><button onclick="closeDash()" style="border:none; background:#f1f5f9; width:40px; height:40px; border-radius:50%; font-size:24px">×</button></div>
+    <div class="dash-header"><b style="font-size: 22px;">DASHBOARD</b><button onclick="closeDash()" style="border:none; background:#f1f5f9; 
+                                  z-index: 2000;                               
+width:40px; height:40px; border-radius:50%; font-size:24px">×</button></div>
     <div class="dash-container">
         <div class="dash-tile bg-reports" onclick="showReports()"><span>📊</span>Reports</div>
         <div class="dash-tile bg-reports" onclick="showTopSelling()"><span>🏆</span>Top Selling</div>
@@ -3223,8 +3225,7 @@ function deleteBill(billNo, dateKey, displayLabel){
 
 
 <!-- ===== NEW: TOP SELLING SCREEN ===== -->
-<div id="topSellingPage" class="full-page" style="background:#f8fafc; overflow:hidden; display:flex; 
-  z-index: 20000;
+<div id="topSellingPage" class="full-page" style="background:#f8fafc; overflow:hidden; display:none; 
   flex-direction:column;">
     <div class="dash-header" style="background:white; padding:14px 15px; border-bottom:1px solid #e2e8f0; flex-shrink:0; display:flex; align-items:center; justify-content:space-between;">
         <b style="font-size:17px; color:#1e293b;">Top Selling</b>
