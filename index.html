@@ -559,7 +559,7 @@ width:40px; height:40px; border-radius:50%; font-size:24px">×</button></div>
     <!-- Header -->
     <div class="dash-header" style="background: white; padding: 8px 15px; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;">
         <b style="font-size: 16px; color: #1e293b;">📊 SALES ANALYTICS</b>
-        <button onclick="document.getElementById('reportsPage').style.display='none'" style="border:none; background:#eff6ff; color:#3b82f6; padding:6px 15px; border-radius:8px; font-weight:bold; font-size:12px; cursor:pointer;">Back</button>
+        <button onclick="closeReports()" style="border:none; background:#eff6ff; color:#3b82f6; padding:6px 15px; border-radius:8px; font-weight:bold; font-size:12px; cursor:pointer;">Back</button>
     </div>
 
     <!-- Scrollable Body Container -->
@@ -1163,6 +1163,44 @@ function processPastedJson() {
     function showDashboard() { document.getElementById('dashPage').style.display = 'flex'; }
     function closeDash() { document.getElementById('dashPage').style.display = 'none'; }
 
+    // ============ BACK-BUTTON NAVIGATION (Dashboard sub-pages -> Dashboard) ============
+    // Har sub-page (Reports, Top Selling, Manage Items, Inventory) jab khulta hai to
+    // ek history entry push karte hain. Mobile/hardware "Back" dabane par (ya browser
+    // ka back) us entry ko "pop" kiya jata hai aur hum us sub-page ko band karke seedha
+    // Dashboard (layout 0) dikha dete hain — POS/app band nahi hota.
+    // Dashboard khud koi entry push nahi karta, isliye Dashboard par Back dabane par
+    // normal browser/app back behaviour hi chalta hai (home screen par jana).
+    let _subPageOpen = null; // 'reports' | 'topSelling' | 'itemManage' | 'inventory' | null
+    function pushSubPageState(name) {
+        _subPageOpen = name;
+        history.pushState({ subPage: name }, '', '#' + name);
+    }
+    function backFromSubPage() {
+        // In-app "Back" button dabane par bhi history entry ko sync me hata dete hain,
+        // taaki hardware back button dubara dabane par galti se dashboard hi na dikhe.
+        if (_subPageOpen) {
+            _subPageOpen = null;
+            if (history.state && history.state.subPage) history.back();
+        }
+    }
+    function closeAllSubPagesToDashboard() {
+        document.getElementById('reportsPage').style.display = 'none';
+        document.getElementById('topSellingPage').style.display = 'none';
+        document.getElementById('itemManagePage').style.display = 'none';
+        document.getElementById('invDashPage').style.display = 'none';
+        showDashboard();
+    }
+    window.addEventListener('popstate', function (e) {
+        if (_subPageOpen) {
+            _subPageOpen = null;
+            closeAllSubPagesToDashboard();
+        }
+    });
+    function closeReports() {
+        document.getElementById('reportsPage').style.display = 'none';
+        backFromSubPage();
+    }
+
     window.onhashchange = () => { 
         const h = location.hash; 
         // Cart panel visibility is intentionally NOT touched here anymore.
@@ -1687,9 +1725,11 @@ function updateCartUI(rebuildList = true) {
         document.getElementById('homeQtyToggle').checked = localStorage.getItem('asb_show_home_qty') === '1';
         document.getElementById('itemManageSearch').value = '';
         renderItemManageList();
+        pushSubPageState('itemManage');
     }
     function closeItemManage() {
         document.getElementById('itemManagePage').style.display = 'none';
+        backFromSubPage();
     }
     function toggleHomeQtyDisplay(cb) {
         localStorage.setItem('asb_show_home_qty', cb.checked ? '1' : '0');
@@ -1725,9 +1765,11 @@ function updateCartUI(rebuildList = true) {
     function showInventoryDash() {
         document.getElementById('invDashPage').style.display = 'flex';
         switchInvTab('add');
+        pushSubPageState('inventory');
     }
     function closeInventoryDash() {
         document.getElementById('invDashPage').style.display = 'none';
+        backFromSubPage();
     }
     function switchInvTab(tab) {
         document.querySelectorAll('.inv-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
@@ -2157,6 +2199,7 @@ function updateCartUI(rebuildList = true) {
 // 1. मुख्य रिपोर्ट्स पेज: यहाँ Stats Cards का डेटा कैलकुलेट होता है
 function showReports() {
     document.getElementById('reportsPage').style.display = 'flex';
+    pushSubPageState('reports');
     
     let sales = JSON.parse(localStorage.getItem('asb_sales_logs')) || [];
     const now = new Date();
@@ -2311,9 +2354,11 @@ let _topSellCurrentFilter = 'today';
 function showTopSelling(){
     document.getElementById('topSellingPage').style.display = 'flex';
     renderTopSelling('today');
+    pushSubPageState('topSelling');
 }
 function closeTopSelling(){
     document.getElementById('topSellingPage').style.display = 'none';
+    backFromSubPage();
 }
 
 function toggleTopSellManualPicker(){
