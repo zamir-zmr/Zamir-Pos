@@ -3223,7 +3223,9 @@ function deleteBill(billNo, dateKey, displayLabel){
 
 
 <!-- ===== NEW: TOP SELLING SCREEN ===== -->
-<div id="topSellingPage" class="full-page" style="background:#f8fafc; overflow:hidden; display:none; flex-direction:column;">
+<div id="topSellingPage" class="full-page" style="background:#f8fafc; overflow:hidden; display:none; 
+  z-index: 2000;
+  flex-direction:column;">
     <div class="dash-header" style="background:white; padding:14px 15px; border-bottom:1px solid #e2e8f0; flex-shrink:0; display:flex; align-items:center; justify-content:space-between;">
         <b style="font-size:17px; color:#1e293b;">Top Selling</b>
         <button onclick="closeTopSelling()" style="border:none; background:#eff6ff; color:#3b82f6; padding:7px 16px; border-radius:8px; font-weight:bold; font-size:12px;">Back</button>
